@@ -1,0 +1,37 @@
+toolchain("aarch64") {
+  tool("cc") {
+    depfile = "{{output}}.d"
+    command = "aarch64-linux-gnu-gcc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+    depsformat = "gcc"
+    outputs = [
+    "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+    ]
+    description = "CC {{output}}"
+  }
+  tool("asm") {
+    depfile = "{{output}}.d"
+    command = "aarch64-linux-gnu-gcc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+    depsformat = "gcc"
+    outputs = [
+    "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+    ]
+    description = "AS {{output}}"
+  }
+  tool("link") {
+    outfile = "{{target_output_name}}{{output_extension}}"
+    rspfile = "$outfile.rsp"
+    command = "aarch64-linux-gnu-ld {{ldflags}} -o $outfile @$rspfile {{solibs}} {{libs}}"
+    default_output_dir = "{{root_out_dir}}"
+    rspfile_content = "{{inputs}}"
+    outputs = [ outfile, ]
+    description = "LINK $outfile"
+  }
+  tool("copy") {
+    command = "cp -af {{source}} {{output}}"
+    description = "COPY {{source}} {{output}}"
+  }
+  tool("stamp") {
+    command = "touch {{output}}"
+    description = "STAMP {{output}}"
+  }
+}
