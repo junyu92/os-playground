@@ -11,8 +11,8 @@ _start:
 
 	/* enable little endian */
 	mrs x0, sctlr_el1
-	and x0, x0, #SCTLR_EL1_EE_MASK
-	and x0, x0, #SCTLR_EL1_EOE_MASK
+	bic x0, x0, #SCTLR_EL1_EE
+	bic x0, x0, #SCTLR_EL1_EOE
 	msr sctlr_el1, x0
 
 	bl main
