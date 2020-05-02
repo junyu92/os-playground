@@ -8,4 +8,5 @@ executable("bootloader") {
   ldscript = rebase_path("${target_out_dir}/linker_script.ld")
   ldflags = [ "-T$ldscript" ]
   deps = [ ":linker_script" ]
+  include_dirs = [ "//include" ]
 }
