@@ -1,5 +1,10 @@
+#include <string.h>
+
 #define CURRENT_EL_MASK 0x3
 #define CURRENT_EL_SHIFT 2
+
+extern char *__bss_start;
+extern char *__bss_end;
 
 void uart_print_char(char c)
 {
@@ -42,8 +47,14 @@ void print_current_el(void)
 	uart_print_char('\n');
 }
 
+void init_bss(void)
+{
+	mem_zero(__bss_start, __bss_end);	
+}
+
 int main()
 {
+	init_bss();
 	print_current_el();
 	return 0;
 }

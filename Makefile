@@ -13,7 +13,7 @@ run: bootimage
 		-m 4096m        \
 		-cpu cortex-a53 \
 		-nographic -s   \
-		-kernel out/bootloader
+		-kernel out/kernel
 
 FORCE:
 	

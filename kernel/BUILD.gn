@@ -1,0 +1,12 @@
+copy("linker_script") {
+  sources = [ "linker_script.ld" ]
+  outputs = [ "$target_out_dir/linker_script.ld" ]
+}
+
+executable("kernel") {
+  sources = [ "main.c", "head.S" ]
+  ldscript = rebase_path("${target_out_dir}/linker_script.ld")
+  ldflags = [ "-T$ldscript" ]
+  deps = [ ":linker_script" ]
+  include_dirs = [ "//include" ]
+}
