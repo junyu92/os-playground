@@ -1,3 +1,0 @@
-executable("elfloader") {
-  sources = [ "main.c", "head.S" ]
-}

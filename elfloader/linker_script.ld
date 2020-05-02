@@ -1,1 +1,0 @@
-entry(_start)
