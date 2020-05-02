@@ -21,9 +21,9 @@ SECTIONS
 
   .stack :
   {
-    __stack_start = .;
+    __stack_bottom = .;
     . = ALIGN(4);
     . += 4K;
-    __stack_end = .;
+    __stack_top = .;
   }
 }
